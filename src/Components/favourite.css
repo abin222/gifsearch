@@ -1,0 +1,11 @@
+ li {
+    cursor: pointer;
+  }
+   li:hover:after,
+   li.fav:after {
+    content: ' \2605';
+    color: rgb(255, 203, 0);
+  }
+   li.fav:hover:after {
+    content: ' \2606';
+  }

@@ -41,7 +41,7 @@ const requestTwo = axios.get(two);
     })
       )
     .catch(errors => {
-      console.log("Error fetching and parsing data", error);
+      console.log("Error fetching and parsing data", errors);
     });
   };
 

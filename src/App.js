@@ -21,21 +21,21 @@ export default class App extends Component {
   }
 
   performSearch = (query = "goodmorning") => {
+    let one =`https://api.tenor.com/v1/search?q=${query}&key=N5LNF89MRDPG&limit=10`;
+    let two=`https://api.giphy.com/v1/gifs/search?q=${query}&limit=10&api_key=dc6zaTOxFJmzC`;
     let finalURL = `https://api.tenor.com/v1/search?q=${query}&key=N5LNF89MRDPG&limit=10`;
-    fetch(finalURL)
-      .then((res) => res.json())
-      .then((data) => {
-          console.log(data);
-         this.setState({tenor: data.results});
-      })
-     .catch((error) => console.log('There was a problem in fetching data'));
+   const requestOne = axios.get(one);
+const requestTwo = axios.get(two);
     axios
-    .get(
-      `https://api.giphy.com/v1/gifs/search?q=${query}&limit=10&api_key=dc6zaTOxFJmzC`
-    )
-    .then(response => {
+  .all([requestOne, requestTwo])
+  .then(
+    axios.spread((...responses) => {
+      const responseOne = responses[0];
+      const responseTwo = responses[1];
+    
       this.setState({
-        gify: response.data.data,
+        tenor: responseOne,
+        gify:responseTwo,
         loading: false
       });
     })

@@ -21,7 +21,7 @@ export default class App extends Component {
   }
 
   performSearch = (query = "goodmorning") => {
-    let one =`https://api.tenor.com/v1/search?q=${query}&key=N5LNF89MRDPG&limit=10`;
+    let one =`https://api.tenor.com/v1/search?q=${query}&key=N5LNF89MRDPG&limit=10&anon_id=3a76e56901d740da9e59ffb22b988242`;
     let two=`https://api.giphy.com/v1/gifs/search?q=${query}&limit=10&api_key=dc6zaTOxFJmzC`;
   
    const requestOne = axios.get(one);
@@ -62,8 +62,8 @@ const requestTwo = axios.get(two);
           ) : (
             <div>
               
-//             <GifList data={this.state.gify} />
-            <Results gifData={this.state.tenor} />
+            <GifList data={this.state.gify} />
+//             <Results gifData={this.state.tenor} />
             </div>
           )}
 

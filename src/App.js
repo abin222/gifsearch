@@ -21,28 +21,18 @@ export default class App extends Component {
   }
 
   performSearch = (query = "goodmorning") => {
-    let one =`https://api.tenor.com/v1/search?q=${query}&key=N5LNF89MRDPG&limit=10&anon_id=3a76e56901d740da9e59ffb22b988242`;
-    let two=`https://api.giphy.com/v1/gifs/search?q=${query}&limit=10&api_key=dc6zaTOxFJmzC`;
-  
-   const requestOne = axios.get(one);
-const requestTwo = axios.get(two);
-    axios
-  .all([requestOne, requestTwo])
-  .then(
-    axios.spread((...responses) => {
-      const responseOne = responses[0];
-      const responseTwo = responses[1];
+    const [firstResponse, secondResponse] = await Promise.all([
+    axios.get(`https://api.tenor.com/v1/search?q=${query}&key=N5LNF89MRDPG&limit=10&anon_id=3a76e56901d740da9e59ffb22b988242`),
+    axios.get(`https://api.giphy.com/v1/gifs/search?q=${query}&limit=10&api_key=dc6zaTOxFJmzC`)
+  ]);  
+
     
       this.setState({
-        tenor: responseOne,
-        gify:responseTwo,
+        tenor: firstResponse,
+        gify:secondResponse,
         loading: false
       });
-    })
-      )
-    .catch(errors => {
-      console.log("Error fetching and parsing data", errors);
-    });
+ 
   };
 
   render() {

@@ -21,7 +21,7 @@ export default class App extends Component {
   }
 
   performSearch = (query = "goodmorning") => {
-    let finalURL = `https://api.tenor.com/v1/search?q=${query}&key=N5LNF89MRDPG&limit=10&anon_id=3a76e56901d740da9e59ffb22b988242`;
+    let finalURL = `https://api.tenor.com/v1/search?q=${query}&key=N5LNF89MRDPG&limit=10`;
     fetch(finalURL)
       .then((res) => res.json())
       .then((data) => {

@@ -21,18 +21,27 @@ export default class App extends Component {
   }
 
   performSearch = (query = "goodmorning") => {
-    const [firstResponse, secondResponse] = await Promise.all([
-    axios.get(`https://api.tenor.com/v1/search?q=${query}&key=N5LNF89MRDPG&limit=10&anon_id=3a76e56901d740da9e59ffb22b988242`),
-    axios.get(`https://api.giphy.com/v1/gifs/search?q=${query}&limit=10&api_key=dc6zaTOxFJmzC`)
-  ]);  
-
-    
+    let finalURL = `https://api.tenor.com/v1/search?q=${query}&key=N5LNF89MRDPG&limit=10&anon_id=3a76e56901d740da9e59ffb22b988242`;
+    fetch(finalURL)
+      .then((res) => res.json())
+      .then((data) => {
+          console.log(data);
+         this.setState({tenor: data.results});
+      })
+     .catch((error) => console.log('There was a problem in fetching data'));
+    axios
+    .get(
+      `https://api.giphy.com/v1/gifs/search?q=${query}&limit=10&api_key=dc6zaTOxFJmzC`
+    )
+    .then(response => {
       this.setState({
-        tenor: firstResponse,
-        gify:secondResponse,
+        gify: response.data.data,
         loading: false
       });
- 
+    })
+    .catch(error => {
+      console.log("Error fetching and parsing data", error);
+    });
   };
 
   render() {
@@ -53,7 +62,7 @@ export default class App extends Component {
             <div>
               
             <GifList data={this.state.gify} />
-//             <Results gifData={this.state.tenor} />
+            <Results gifData={this.state.tenor} />
             </div>
           )}
 

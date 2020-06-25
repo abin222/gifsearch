@@ -61,7 +61,7 @@ export default class App extends Component {
           ) : (
             <div>
               
-            <GifList data={this.state.gify} />
+//             <GifList data={this.state.gify} />
             <Results gifData={this.state.tenor} />
             </div>
           )}

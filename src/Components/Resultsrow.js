@@ -5,9 +5,7 @@ class Resultsrow extends Component{
       console.log(this.props);
       return(
         <li className="gif-wrap">
-            <img src={this.props.url} />
-            <span className="title">{this.props.title}</span>
-            <span className="info">Click to copy emoji</span>
+           
             {/* <Fav/> */}
         </li>
       );

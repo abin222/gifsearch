@@ -39,7 +39,8 @@ const requestTwo = axios.get(two);
         loading: false
       });
     })
-    .catch(error => {
+      )
+    .catch(errors => {
       console.log("Error fetching and parsing data", error);
     });
   };

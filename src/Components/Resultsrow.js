@@ -6,7 +6,7 @@ class Resultsrow extends Component{
       return(
         <li className="gif-wrap">
            <img src={this.props.url} alt=""/>
-            {<Fav/>}
+            <Fav/>
         </li>
       );
     }
